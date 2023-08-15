@@ -17,18 +17,16 @@ const CommentSection = () => {
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
-        console.log(form)
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
         try {
-            console.log(form)
             const res = await axios.post(
                 `${config.api_host_url}/comments/${videoId}`,
                 form
             );
-            console.log(res)
+
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -36,24 +34,22 @@ const CommentSection = () => {
 
     }
 
-    const getComment = useCallback(
-        async () => {
-            try {
-                const res = await axios.get(`${config.api_host_url}/comments/${videoId}`)
-                console.log(res.data)
-                setComments(res.data)
-                setLoading(false)
-            } catch (err) {
-                console.log(err)
-            }
-        },
-        [],
-    )
+    const getComment = async () => {
+        try {
+            const res = await axios.get(`${config.api_host_url}/comments/${videoId}`)
+            setComments(res.data)
+            setLoading(false)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     useEffect(() => {
         getComment()
 
-    }, [getComment])
+    }, [])
+
+
 
     return (
         <Flex direction={ 'column' } >

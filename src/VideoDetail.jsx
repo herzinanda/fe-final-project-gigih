@@ -21,18 +21,16 @@ const VideoDetail = () => {
         try {
             const res = await axios.get(`${config.api_host_url}/videos/${videoId}`)
 
-            // console.log(res.data._id)
             setVideoData(res.data)
         } catch (err) {
             window.location.replace('/not-found')
-            console.log(err)
         }
     }
 
     const getProduct = async () => {
         try {
             const res = await axios.get(`${config.api_host_url}/products/${videoId}`)
-            console.log(res.data)
+
             setProducts(res.data)
             setLoadingProduct(false)
         } catch (err) {
@@ -43,20 +41,13 @@ const VideoDetail = () => {
     const getComment = async () => {
         try {
             const res = await axios.get(`${config.api_host_url}/comments/${videoId}`)
-            console.log(res.data)
+
             setComments(res.data)
         } catch (err) {
             console.log(err)
         }
     }
 
-    // const playVideo = async () => {
-    //     try {
-    //         const res = await axios.put(`${config.api_host_url}/play/${videoId}`)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
 
     useEffect(() => {
         getVideo()
@@ -69,7 +60,6 @@ const VideoDetail = () => {
             <Container maxW={ '8xl' } paddingY={ '2' } >
                 <Flex>
                     <ProductList isLoading={ loadingProduct } products={ products }></ProductList>
-                    {/* { console.log(videoData._id) } */ }
                     <VideoPlayer
                         id={ videoData._id }
                         title={ videoData.title }

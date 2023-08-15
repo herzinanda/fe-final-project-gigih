@@ -10,7 +10,7 @@ const Home = () => {
     const getAllVideos = async () => {
         try {
             const res = await axios.get(`${config.api_host_url}/videos/all`)
-            console.log(res.data)
+
             setVideos(res.data)
         } catch (err) {
             console.log(err)
