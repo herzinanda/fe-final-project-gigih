@@ -8,7 +8,7 @@ const NotFound = () => {
                 <VStack>
                     <Text fontSize={ 20 }
                         fontWeight={ 'semibold' }
-                        bg={ useColorModeValue('black', 'white') }
+                        color={ useColorModeValue('black', 'white') }
                     >404 Page Not Found</Text>
                     <Link href='/'><Button colorScheme='teal'>Go to Homepage</Button></Link>
                 </VStack>
