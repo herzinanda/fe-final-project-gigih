@@ -7,6 +7,7 @@ import CommentSection from './components/comment-section';
 import ProductList from './components/product-list';
 import { config } from "../configs/index.js";
 import axios from 'axios';
+import NotFound from './404';
 
 
 const VideoDetail = () => {
@@ -19,9 +20,11 @@ const VideoDetail = () => {
     const getVideo = async () => {
         try {
             const res = await axios.get(`${config.api_host_url}/videos/${videoId}`)
-            console.log(res.data)
+
+            // console.log(res.data._id)
             setVideoData(res.data)
         } catch (err) {
+            window.location.replace('/not-found')
             console.log(err)
         }
     }
@@ -47,20 +50,19 @@ const VideoDetail = () => {
         }
     }
 
-    const playVideo = async () => {
-        try {
-            const res = await axios.put(`${config.api_host_url}/play/${videoId}`)
-        } catch (err) {
-            console.log(err)
-        }
-    }
+    // const playVideo = async () => {
+    //     try {
+    //         const res = await axios.put(`${config.api_host_url}/play/${videoId}`)
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 
     useEffect(() => {
         getVideo()
         getProduct()
         getComment()
-        playVideo()
-    })
+    }, [])
     return (
         <>
             <Navbar></Navbar>
