@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Home from './Home'
 import VideoDetail from './VideoDetail'
+import NotFound from './404'
 // import './App.css'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="video">
           <Route path=":videoId" element={ <VideoDetail /> } />
         </Route>
+        <Route path="*" element={ <NotFound /> } />
       </Routes>
 
     </>
